@@ -25,56 +25,85 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
     setImageLoading(prev => ({ ...prev, [index]: false }));
   };
 
-  return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-        {images.map((image, index) => (
-          <div key={index} className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
-            {!imageError[index] && (
-              <Image
-                src={image}
-                alt={`${title} example ${index + 1}`}
-                fill
-                className={`object-cover transition-all duration-300 ${
-                  imageLoading[index] ? 'opacity-0' : 'hover:scale-105'
-                }`}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                priority={index === 0}
-                onLoad={() => handleImageLoad(index)}
-                onError={() => handleImageError(index)}
-                unoptimized
-              />
-            )}
-            {(imageError[index] || imageLoading[index]) && (
-              <div className="absolute inset-0 flex items-center justify-center text-navy/50">
-                <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+  const isPremium = title.includes('Premium');
 
-      <div className="p-6">
-        <h3 className="text-2xl font-serif font-bold mb-2 text-navy">{title}</h3>
-        <p className="text-lg font-semibold text-navy mb-4">
+  return (
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+      {isPremium ? (
+        <div className="p-4 space-y-3">
+          {/* Top image */}
+          <div className="relative aspect-[16/9] rounded-lg overflow-hidden">
+            <Image
+              src={images[0]}
+              alt={`${title} main image`}
+              fill
+              className="object-cover transition-all duration-300 hover:scale-105"
+              sizes="(max-width: 640px) 100vw, 66vw"
+              priority
+              onLoad={() => handleImageLoad(0)}
+              onError={() => handleImageError(0)}
+              unoptimized
+            />
+          </div>
+          {/* Bottom two images */}
+          <div className="grid grid-cols-2 gap-3">
+            {images.slice(1).map((image, index) => (
+              <div 
+                key={index + 1}
+                className="relative aspect-[4/3] rounded-lg overflow-hidden"
+              >
+                <Image
+                  src={image}
+                  alt={`${title} image ${index + 2}`}
+                  fill
+                  className="object-cover transition-all duration-300 hover:scale-105"
+                  sizes="(max-width: 640px) 50vw, 33vw"
+                  onLoad={() => handleImageLoad(index + 1)}
+                  onError={() => handleImageError(index + 1)}
+                  unoptimized
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="relative w-full aspect-[16/9]">
+          <Image
+            src={images[0]}
+            alt={`${title} main image`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            priority
+            onLoad={() => handleImageLoad(0)}
+            onError={() => handleImageError(0)}
+            unoptimized
+          />
+        </div>
+      )}
+
+      <div className={`px-8 py-6`}>
+        <h3 className="text-3xl font-serif font-bold mb-3 text-navy">{title}</h3>
+        <p className="text-xl font-medium text-navy mb-4">
           Starting at ${price}
         </p>
-        <p className="text-navy/70 mb-4">{description}</p>
+        <p className="text-navy/70 text-lg mb-6">{description}</p>
         
-        <div className="mb-6">
-          <h4 className="font-semibold mb-2 text-navy">Services Include:</h4>
-          <ul className="list-disc list-inside text-navy/70">
+        <div className="mb-8">
+          <h4 className="font-medium text-lg mb-3 text-navy">Services Include:</h4>
+          <ul className="space-y-2 text-navy/70">
             {serviceIncludes.map((service, index) => (
-              <li key={index}>{service}</li>
+              <li key={index} className="flex items-center">
+                <span className="mr-2">•</span>
+                {service}
+              </li>
             ))}
           </ul>
         </div>
 
         <Link
           href="/contact"
-          className="inline-block w-full text-center bg-navy text-cream px-6 py-3 rounded-md hover:bg-navy-light transition-colors"
+          className="inline-block w-full text-center bg-navy text-cream px-8 py-4 rounded-lg text-lg font-medium hover:bg-navy-light transition-colors"
         >
           Book now
         </Link>

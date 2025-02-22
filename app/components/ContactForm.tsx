@@ -9,7 +9,7 @@ const ContactForm = () => {
     email: '',
     message: '',
     newsletter: false,
-    service: 'Photoshoots' // Default service
+    service: 'Photoshoots'
   });
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
@@ -21,40 +21,51 @@ const ContactForm = () => {
     setSubmitStatus('loading');
 
     try {
-      const subject = `New Service Inquiry: ${formData.service}`;
+      const subject = `New ${formData.service} Inquiry from ${formData.firstName}`;
       const body = `
-New Service Inquiry Details:
+New Service Inquiry Details
 --------------------------
 Name: ${formData.firstName} ${formData.lastName}
 Email: ${formData.email}
-Service: ${formData.service}
-Newsletter: ${formData.newsletter ? 'Yes' : 'No'}
+Service Package: ${formData.service}
+Newsletter Signup: ${formData.newsletter ? 'Yes' : 'No'}
 
 Message:
 ${formData.message}
 
 --------------------------
 Sent from Vesal Visuals website
-      `;
+      `.trim();
 
-      // Send to multiple email addresses
+      // Primary and backup email addresses
       const emailAddresses = [
         'vesalvisuals@gmail.com',
         'vesalvisuals@outlook.com'
       ].join(',');
 
-      window.location.href = `mailto:${emailAddresses}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // Create email link with all parameters properly encoded
+      const mailtoLink = `mailto:${emailAddresses}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        message: '',
-        newsletter: false,
-        service: 'Photoshoots'
-      });
+      // Open email client
+      window.location.href = mailtoLink;
       
-      setSubmitStatus('success');
+      // Reset form after short delay
+      setTimeout(() => {
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          message: '',
+          newsletter: false,
+          service: 'Photoshoots'
+        });
+        setSubmitStatus('success');
+      }, 1000);
+
+      // Reset success message after 3 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 4000);
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
@@ -67,7 +78,7 @@ Sent from Vesal Visuals website
       <p className="text-lg italic text-navy/80 mb-6">Up to 20 Minutes of Complimentary Consultation</p>
       
       <p className="mb-6 text-navy/80">
-        Leave a simple message entailing which &ldquo;Service&rdquo; you are interested in.
+        Leave a simple message entailing which service you are interested in.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -80,7 +91,7 @@ Sent from Vesal Visuals website
               type="text"
               id="firstName"
               required
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-navy focus:ring-navy"
+              className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-accent focus:ring-accent"
               value={formData.firstName}
               onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
             />
@@ -93,7 +104,7 @@ Sent from Vesal Visuals website
               type="text"
               id="lastName"
               required
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-navy focus:ring-navy"
+              className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-accent focus:ring-accent"
               value={formData.lastName}
               onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
             />
@@ -108,7 +119,7 @@ Sent from Vesal Visuals website
             type="email"
             id="email"
             required
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-navy focus:ring-navy"
+            className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-accent focus:ring-accent"
             value={formData.email}
             onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
           />
@@ -116,12 +127,12 @@ Sent from Vesal Visuals website
 
         <div>
           <label htmlFor="service" className="block text-sm font-medium text-navy mb-1">
-            Service
+            Service Package
           </label>
           <select
             id="service"
             required
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-navy focus:ring-navy"
+            className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-accent focus:ring-accent"
             value={formData.service}
             onChange={(e) => setFormData(prev => ({ ...prev, service: e.target.value }))}
           >
@@ -139,9 +150,10 @@ Sent from Vesal Visuals website
             id="message"
             required
             rows={4}
-            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-navy focus:ring-navy"
+            className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-accent focus:ring-accent"
             value={formData.message}
             onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+            placeholder="Tell us about your vision and what you're looking to achieve..."
           />
         </div>
 
@@ -149,7 +161,7 @@ Sent from Vesal Visuals website
           <label className="flex items-center space-x-2">
             <input
               type="checkbox"
-              className="rounded border-gray-300 text-navy focus:ring-navy"
+              className="rounded border-gray-300 text-accent focus:ring-accent"
               checked={formData.newsletter}
               onChange={(e) => setFormData(prev => ({ ...prev, newsletter: e.target.checked }))}
             />
@@ -161,17 +173,25 @@ Sent from Vesal Visuals website
           <button
             type="submit"
             disabled={submitStatus === 'loading'}
-            className="w-full md:w-auto px-6 py-3 bg-navy text-cream rounded-md hover:bg-navy-light focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+            className={`w-full md:w-auto px-8 py-4 rounded-lg text-lg font-medium transition-all duration-200
+              ${submitStatus === 'loading' 
+                ? 'bg-gray-400 cursor-not-allowed' 
+                : 'bg-accent hover:bg-accent-light'} 
+              text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent`}
           >
-            {submitStatus === 'loading' ? 'Sending...' : 'Submit'}
+            {submitStatus === 'loading' ? 'Opening Email...' : 'Submit'}
           </button>
 
           {submitStatus === 'success' && (
-            <p className="mt-2 text-green-600 font-medium">Message sent successfully!</p>
+            <p className="mt-2 text-green-600 font-medium animate-fade-in">
+              Email client opened! Please send your message.
+            </p>
           )}
           
           {submitStatus === 'error' && (
-            <p className="mt-2 text-red-600 font-medium">Error sending message. Please try again.</p>
+            <p className="mt-2 text-red-600 font-medium animate-fade-in">
+              Error opening email client. Please try again or email us directly.
+            </p>
           )}
         </div>
       </form>

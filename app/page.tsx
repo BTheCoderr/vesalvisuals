@@ -7,9 +7,7 @@ const services = [
     price: 230,
     description: 'Professional photography services for all your needs.',
     images: [
-      'https://images.unsplash.com/photo-1542038784456-1ea8e935640e',
-      'https://images.unsplash.com/photo-1551316679-9c6ae9dec224',
-      'https://images.unsplash.com/photo-1562088287-bde35a1ea917'
+      'https://images.unsplash.com/photo-1542038784456-1ea8e935640e'
     ],
     serviceIncludes: [
       'Events',
@@ -24,9 +22,7 @@ const services = [
     price: 320,
     description: 'High-quality visual content creation for your brand.',
     images: [
-      'https://images.unsplash.com/photo-1601506521793-dc748fc80b67',
-      'https://images.unsplash.com/photo-1585747860715-2ba37e788b70',
-      'https://images.unsplash.com/photo-1492724441997-5dc865305da7'
+      'https://images.unsplash.com/photo-1601506521793-dc748fc80b67'
     ],
     serviceIncludes: [
       'Reels',
@@ -42,7 +38,7 @@ const services = [
     images: [
       'https://images.unsplash.com/photo-1516035069371-29a1b244cc32',
       'https://images.unsplash.com/photo-1533488765986-dfa2a9939acd',
-      'https://images.unsplash.com/photo-1571388208497-71bedc66e932'
+      'https://images.unsplash.com/photo-1603574670812-d24560880210' // Fashion/portrait photography session
     ],
     serviceIncludes: [
       'Customizable Photo & Video Shoot',
@@ -55,15 +51,15 @@ export default function Home() {
     <main className="min-h-screen bg-cream">
       <Header />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-serif text-navy mb-4">The Vision</h1>
-          <p className="text-lg text-navy/80 max-w-2xl mx-auto">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-8 pt-32 pb-16">
+        <div className="text-center mb-20">
+          <h1 className="text-6xl font-serif text-navy mb-6">The Vision</h1>
+          <p className="text-xl text-navy/80 max-w-3xl mx-auto leading-relaxed">
             The Vision can be on any scale you&apos;d like it. Let&apos;s come together and envision the artist within. Schedule a complementary consultation with Vee to ensure every detail is perfectly catered to your Session.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {services.map((service, index) => (
             <ServiceCard
               key={index}

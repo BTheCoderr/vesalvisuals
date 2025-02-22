@@ -17,6 +17,11 @@ const config: Config = {
         cream: {
           DEFAULT: '#F5F5F5',
           dark: '#E5E5E5'
+        },
+        accent: {
+          DEFAULT: '#2A9D8F',
+          light: '#40B4A6',
+          dark: '#1F756A'
         }
       },
       fontFamily: {
