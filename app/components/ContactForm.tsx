@@ -8,44 +8,53 @@ const ContactForm = () => {
     lastName: '',
     email: '',
     message: '',
-    newsletter: false
+    newsletter: false,
+    service: 'Photoshoots' // Default service
   });
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (submitStatus === 'loading') return;
+    
     setSubmitStatus('loading');
 
     try {
-      // Create email content
-      const subject = 'New Service Inquiry';
+      const subject = `New Service Inquiry: ${formData.service}`;
       const body = `
+New Service Inquiry Details:
+--------------------------
 Name: ${formData.firstName} ${formData.lastName}
 Email: ${formData.email}
+Service: ${formData.service}
 Newsletter: ${formData.newsletter ? 'Yes' : 'No'}
 
 Message:
 ${formData.message}
+
+--------------------------
+Sent from Vesal Visuals website
       `;
 
-      // Open default email client
-      window.location.href = `mailto:vesalvisuals@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // Send to multiple email addresses
+      const emailAddresses = [
+        'vesalvisuals@gmail.com',
+        'vesalvisuals@outlook.com'
+      ].join(',');
+
+      window.location.href = `mailto:${emailAddresses}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       
-      // Reset form
       setFormData({
         firstName: '',
         lastName: '',
         email: '',
         message: '',
-        newsletter: false
+        newsletter: false,
+        service: 'Photoshoots'
       });
       
       setSubmitStatus('success');
-      
-      // Reset success message after 3 seconds
-      setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 3000);
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
@@ -59,8 +68,6 @@ ${formData.message}
       
       <p className="mb-6 text-navy/80">
         Leave a simple message entailing which &ldquo;Service&rdquo; you are interested in.
-        <br />
-        Photoshoots, Visualizer, Or Premium Photo&mdash;Visualizer
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -75,7 +82,7 @@ ${formData.message}
               required
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-navy focus:ring-navy"
               value={formData.firstName}
-              onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+              onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
             />
           </div>
           <div>
@@ -88,7 +95,7 @@ ${formData.message}
               required
               className="block w-full rounded-md border-gray-300 shadow-sm focus:border-navy focus:ring-navy"
               value={formData.lastName}
-              onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+              onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
             />
           </div>
         </div>
@@ -103,8 +110,25 @@ ${formData.message}
             required
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-navy focus:ring-navy"
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
           />
+        </div>
+
+        <div>
+          <label htmlFor="service" className="block text-sm font-medium text-navy mb-1">
+            Service
+          </label>
+          <select
+            id="service"
+            required
+            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-navy focus:ring-navy"
+            value={formData.service}
+            onChange={(e) => setFormData(prev => ({ ...prev, service: e.target.value }))}
+          >
+            <option value="Photoshoots">Photoshoots</option>
+            <option value="Visualizers">Visualizers</option>
+            <option value="Premium Photo—Visualizer—Bundle">Premium Photo—Visualizer—Bundle</option>
+          </select>
         </div>
 
         <div>
@@ -117,7 +141,7 @@ ${formData.message}
             rows={4}
             className="block w-full rounded-md border-gray-300 shadow-sm focus:border-navy focus:ring-navy"
             value={formData.message}
-            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+            onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
           />
         </div>
 
@@ -127,7 +151,7 @@ ${formData.message}
               type="checkbox"
               className="rounded border-gray-300 text-navy focus:ring-navy"
               checked={formData.newsletter}
-              onChange={(e) => setFormData({ ...formData, newsletter: e.target.checked })}
+              onChange={(e) => setFormData(prev => ({ ...prev, newsletter: e.target.checked }))}
             />
             <span className="text-sm text-navy/80">Sign up for news and updates</span>
           </label>

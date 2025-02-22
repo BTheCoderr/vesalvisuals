@@ -1,5 +1,3 @@
-'use client';
-
 import Header from './components/Header';
 import ServiceCard from './components/ServiceCard';
 
@@ -9,9 +7,9 @@ const services = [
     price: 230,
     description: 'Professional photography services for all your needs.',
     images: [
-      '/images/photoshoot-1.jpg',
-      '/images/photoshoot-2.jpg',
-      '/images/photoshoot-3.jpg',
+      'https://images.unsplash.com/photo-1542038784456-1ea8e935640e',
+      'https://images.unsplash.com/photo-1551316679-9c6ae9dec224',
+      'https://images.unsplash.com/photo-1562088287-bde35a1ea917'
     ],
     serviceIncludes: [
       'Events',
@@ -26,9 +24,9 @@ const services = [
     price: 320,
     description: 'High-quality visual content creation for your brand.',
     images: [
-      '/images/visualizer-1.jpg',
-      '/images/visualizer-2.jpg',
-      '/images/visualizer-3.jpg',
+      'https://images.unsplash.com/photo-1601506521793-dc748fc80b67',
+      'https://images.unsplash.com/photo-1585747860715-2ba37e788b70',
+      'https://images.unsplash.com/photo-1492724441997-5dc865305da7'
     ],
     serviceIncludes: [
       'Reels',
@@ -42,9 +40,9 @@ const services = [
     price: 720,
     description: 'Complete package combining premium photography and visual content.',
     images: [
-      '/images/premium-1.jpg',
-      '/images/premium-2.jpg',
-      '/images/premium-3.jpg',
+      'https://images.unsplash.com/photo-1516035069371-29a1b244cc32',
+      'https://images.unsplash.com/photo-1533488765986-dfa2a9939acd',
+      'https://images.unsplash.com/photo-1571388208497-71bedc66e932'
     ],
     serviceIncludes: [
       'Customizable Photo & Video Shoot',

@@ -17,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="bg-cream text-navy">{children}</body>
+      <body className="bg-cream text-navy" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 } 
