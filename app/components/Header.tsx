@@ -14,9 +14,6 @@ const Header = () => {
           </div>
           
           <div className="flex items-center space-x-8">
-            <Link href="/services" className="text-navy hover:text-navy-light transition-colors">
-              Services
-            </Link>
             <Link href="/contact" className="text-navy hover:text-navy-light transition-colors">
               Contact
             </Link>

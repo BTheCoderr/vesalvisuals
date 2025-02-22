@@ -1,36 +1,146 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vesal Visuals 📸
 
-## Getting Started
+A professional photography and visual content creation portfolio website built with Next.js 13, TailwindCSS, and TypeScript.
 
-First, run the development server:
+![Vesal Visuals Banner](public/images/premium-1.jpg)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 📸 Screenshots
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src=".github/assets/home-vision.png" alt="Home Vision Section" width="400px"/></td>
+      <td><img src=".github/assets/services.png" alt="Services Section" width="400px"/></td>
+    </tr>
+    <tr>
+      <td><img src=".github/assets/premium.png" alt="Premium Service" width="400px"/></td>
+      <td><img src=".github/assets/contact.png" alt="Contact Form" width="400px"/></td>
+    </tr>
+  </table>
+</div>
+
+## 🎯 About
+
+Vesal Visuals is a premium photography and visual content creation service, offering:
+
+- **Professional Photography**: Events, lifestyle shoots, portraits, studio sessions, and sports photography
+- **Visual Content Creation**: High-quality reels, recaps, vlogs, and short-term content
+- **Premium Bundle**: Comprehensive package combining photography and visual content creation
+
+Our mission is to help clients bring their vision to life through professional photography and visual content. We offer complimentary consultations to ensure every detail is perfectly catered to each client's needs.
+
+### 🌟 Why Choose Vesal Visuals?
+
+- Professional-grade equipment and expertise
+- Customizable packages to fit your needs
+- Complimentary consultation sessions
+- Quick turnaround times
+- High-quality post-production
+- Modern and creative approach
+
+## ✨ Features
+
+- 🎯 Professional Photography Services
+- 🎥 Visual Content Creation
+- 📱 Responsive Design
+- 🎨 Modern UI/UX
+- 📧 Interactive Contact Form
+- 🌐 SEO Optimized
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 13
+- **Styling:** TailwindCSS
+- **Language:** TypeScript
+- **Fonts:** Playfair Display, Inter
+- **Deployment:** Netlify
+- **Version Control:** Git
+
+## 🚀 Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/vesal-visuals.git
+   ```
+
+2. **Install dependencies**
+   ```bash
+   cd vesal-visuals
+   npm install
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open [http://localhost:3000](http://localhost:3000) in your browser**
+
+## 📦 Project Structure
+
+```
+vesal-visuals/
+├── app/
+│   ├── components/
+│   │   ├── ContactForm.tsx
+│   │   ├── Header.tsx
+│   │   └── ServiceCard.tsx
+│   ├── contact/
+│   │   └── page.tsx
+│   ├── services/
+│   │   └── page.tsx
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+├── public/
+│   ├── images/
+│   └── logo.svg
+├── scripts/
+│   └── download-images.sh
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📸 Services
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Photoshoots
+- Events
+- Lifestyle
+- Portraits
+- Studio
+- Sports
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2. Visualizers
+- Reels
+- Recaps
+- Vlogs
+- Short Term Content
 
-## Learn More
+### 3. Premium Bundle
+- Customizable Photo & Video Shoot
+- Combined Photography and Visual Content
 
-To learn more about Next.js, take a look at the following resources:
+## 🎨 Color Scheme
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```css
+Navy: #1B2B4B
+Cream: #F5F5F5
+Accent: #2A9D8F
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📱 Responsive Design
 
-## Deploy on Vercel
+The website is fully responsive and optimized for:
+- Desktop
+- Tablet
+- Mobile devices
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📞 Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For inquiries and bookings:
+- Email: vesalvisuals@gmail.com
+- Instagram: [@vesalvisuals](https://instagram.com/vesalvisuals)
+- YouTube: [@Vesal.Visuals](https://youtube.com/@Vesal.Visuals)
+
+## 📄 License
+
+This project is licensed under the MIT License.

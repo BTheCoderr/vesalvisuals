@@ -7,9 +7,9 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
       },
     ],
-    domains: ['localhost'],
-    unoptimized: process.env.NODE_ENV === 'development',
+    unoptimized: true,
   },
+  output: 'export',
 }
 
 module.exports = nextConfig 

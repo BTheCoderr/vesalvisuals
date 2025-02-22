@@ -57,7 +57,7 @@ export default function Home() {
         <div className="text-center mb-20">
           <h1 className="text-6xl font-serif text-navy mb-6">The Vision</h1>
           <p className="text-xl text-navy/80 max-w-3xl mx-auto leading-relaxed">
-            Choose from our carefully crafted service packages. Each package is designed to bring your vision to life with professional quality and attention to detail. Schedule a complimentary consultation with Vee to ensure every detail is perfectly catered to your Session.
+            The Vision can be on any scale you&apos;d like it. Let&apos;s come together and envision the artist within. Schedule a complementary consultation with Vee to ensure every detail is perfectly catered to your Session.
           </p>
         </div>
 
