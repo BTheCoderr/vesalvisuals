@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 interface ServiceCardProps {
   title: string;
@@ -25,15 +24,15 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
       </div>
 
       <div className="p-6">
-        <h3 className="text-2xl font-bold mb-2">{title}</h3>
-        <p className="text-lg font-semibold text-blue-900 mb-4">
+        <h3 className="text-2xl font-serif font-bold mb-2 text-navy">{title}</h3>
+        <p className="text-lg font-semibold text-navy mb-4">
           Starting at ${price}
         </p>
-        <p className="text-gray-600 mb-4">{description}</p>
+        <p className="text-navy/70 mb-4">{description}</p>
         
         <div className="mb-6">
-          <h4 className="font-semibold mb-2">Services Include:</h4>
-          <ul className="list-disc list-inside text-gray-600">
+          <h4 className="font-semibold mb-2 text-navy">Services Include:</h4>
+          <ul className="list-disc list-inside text-navy/70">
             {serviceIncludes.map((service, index) => (
               <li key={index}>{service}</li>
             ))}
@@ -42,7 +41,7 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
 
         <Link
           href="/contact"
-          className="inline-block w-full text-center bg-blue-900 text-white px-6 py-3 rounded-md hover:bg-blue-800 transition-colors"
+          className="inline-block w-full text-center bg-navy text-cream px-6 py-3 rounded-md hover:bg-navy-light transition-colors"
         >
           Book now
         </Link>
