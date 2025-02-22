@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
 
 interface ServiceCardProps {
   title: string;
@@ -13,18 +12,6 @@ interface ServiceCardProps {
 }
 
 const ServiceCard = ({ title, price, description, images, serviceIncludes }: ServiceCardProps) => {
-  const [imageError, setImageError] = useState<Record<number, boolean>>({});
-  const [imageLoading, setImageLoading] = useState<Record<number, boolean>>({});
-
-  const handleImageLoad = (index: number) => {
-    setImageLoading(prev => ({ ...prev, [index]: false }));
-  };
-
-  const handleImageError = (index: number) => {
-    setImageError(prev => ({ ...prev, [index]: true }));
-    setImageLoading(prev => ({ ...prev, [index]: false }));
-  };
-
   const isPremium = title.includes('Premium');
 
   return (
@@ -40,8 +27,6 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
               className="object-cover transition-all duration-300 hover:scale-105"
               sizes="(max-width: 640px) 100vw, 66vw"
               priority
-              onLoad={() => handleImageLoad(0)}
-              onError={() => handleImageError(0)}
               unoptimized
             />
           </div>
@@ -58,8 +43,6 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
                   fill
                   className="object-cover transition-all duration-300 hover:scale-105"
                   sizes="(max-width: 640px) 50vw, 33vw"
-                  onLoad={() => handleImageLoad(index + 1)}
-                  onError={() => handleImageError(index + 1)}
                   unoptimized
                 />
               </div>
@@ -75,8 +58,6 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
             className="object-cover"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             priority
-            onLoad={() => handleImageLoad(0)}
-            onError={() => handleImageError(0)}
             unoptimized
           />
         </div>
