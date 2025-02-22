@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 
 interface ServiceCardProps {
   title: string;
@@ -20,14 +19,10 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
         <div className="p-4 space-y-3">
           {/* Top image */}
           <div className="relative aspect-[16/9] rounded-lg overflow-hidden">
-            <Image
+            <img
               src={images[0]}
               alt={`${title} main image`}
-              fill
-              className="object-cover transition-all duration-300 hover:scale-105"
-              sizes="(max-width: 640px) 100vw, 66vw"
-              priority
-              loader={({ src }) => src}
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105"
             />
           </div>
           {/* Bottom two images */}
@@ -37,13 +32,10 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
                 key={index + 1}
                 className="relative aspect-[4/3] rounded-lg overflow-hidden"
               >
-                <Image
+                <img
                   src={image}
                   alt={`${title} image ${index + 2}`}
-                  fill
-                  className="object-cover transition-all duration-300 hover:scale-105"
-                  sizes="(max-width: 640px) 50vw, 33vw"
-                  loader={({ src }) => src}
+                  className="absolute inset-0 w-full h-full object-cover transition-all duration-300 hover:scale-105"
                 />
               </div>
             ))}
@@ -51,14 +43,10 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
         </div>
       ) : (
         <div className="relative w-full aspect-[16/9]">
-          <Image
+          <img
             src={images[0]}
             alt={`${title} main image`}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            priority
-            loader={({ src }) => src}
+            className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
       )}

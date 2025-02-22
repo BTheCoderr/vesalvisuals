@@ -1,7 +1,27 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter, usePathname } from 'next/navigation';
 
 const Header = () => {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleServicesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (pathname === '/') {
+      // If we're on the home page, scroll to services
+      const servicesSection = document.querySelector('#services');
+      if (servicesSection) {
+        servicesSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If we're on another page, go to home and then scroll
+      router.push('/#services');
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 bg-cream/90 backdrop-blur-sm z-50 border-b border-navy/10">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,6 +34,9 @@ const Header = () => {
           </div>
           
           <div className="flex items-center space-x-8">
+            <button onClick={handleServicesClick} className="text-navy hover:text-navy-light transition-colors">
+              Services
+            </button>
             <Link href="/contact" className="text-navy hover:text-navy-light transition-colors">
               Contact
             </Link>

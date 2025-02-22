@@ -61,7 +61,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div id="services" className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {services.map((service, index) => (
             <ServiceCard
               key={index}
