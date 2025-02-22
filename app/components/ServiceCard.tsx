@@ -27,7 +27,7 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
               className="object-cover transition-all duration-300 hover:scale-105"
               sizes="(max-width: 640px) 100vw, 66vw"
               priority
-              unoptimized
+              loader={({ src }) => src}
             />
           </div>
           {/* Bottom two images */}
@@ -43,7 +43,7 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
                   fill
                   className="object-cover transition-all duration-300 hover:scale-105"
                   sizes="(max-width: 640px) 50vw, 33vw"
-                  unoptimized
+                  loader={({ src }) => src}
                 />
               </div>
             ))}
@@ -58,7 +58,7 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
             className="object-cover"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             priority
-            unoptimized
+            loader={({ src }) => src}
           />
         </div>
       )}
