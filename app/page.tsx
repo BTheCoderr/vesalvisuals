@@ -7,7 +7,7 @@ const services = [
     price: 230,
     description: 'Professional photography services for all your needs.',
     images: [
-      'https://images.unsplash.com/photo-1542038784456-1ea8e935640e'
+      '/images/photoshoot-1.jpg'
     ],
     serviceIncludes: [
       'Events',
@@ -22,7 +22,7 @@ const services = [
     price: 320,
     description: 'High-quality visual content creation for your brand.',
     images: [
-      'https://images.unsplash.com/photo-1601506521793-dc748fc80b67'
+      '/images/visualizer-1.jpg'
     ],
     serviceIncludes: [
       'Reels',
@@ -36,12 +36,14 @@ const services = [
     price: 720,
     description: 'Complete package combining premium photography and visual content.',
     images: [
-      'https://images.unsplash.com/photo-1516035069371-29a1b244cc32',
-      'https://images.unsplash.com/photo-1533488765986-dfa2a9939acd',
-      'https://images.unsplash.com/photo-1603574670812-d24560880210' // Fashion/portrait photography session
+      '/images/premium-1.jpg',
+      '/images/premium-2.jpg',
+      '/images/premium-3.jpg'
     ],
     serviceIncludes: [
       'Customizable Photo & Video Shoot',
+      'Combined Photography and Visual Content',
+      'Premium Editing and Post-Production',
     ],
   },
 ];
@@ -55,7 +57,7 @@ export default function Home() {
         <div className="text-center mb-20">
           <h1 className="text-6xl font-serif text-navy mb-6">The Vision</h1>
           <p className="text-xl text-navy/80 max-w-3xl mx-auto leading-relaxed">
-            The Vision can be on any scale you&apos;d like it. Let&apos;s come together and envision the artist within. Schedule a complementary consultation with Vee to ensure every detail is perfectly catered to your Session.
+            Choose from our carefully crafted service packages. Each package is designed to bring your vision to life with professional quality and attention to detail. Schedule a complimentary consultation with Vee to ensure every detail is perfectly catered to your Session.
           </p>
         </div>
 
