@@ -60,20 +60,20 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
         </div>
       )}
 
-      <div className="p-4 flex flex-col flex-grow">
+      <div className="p-3 flex flex-col flex-grow">
         <div>
-          <h3 className="text-2xl font-serif font-bold mb-2 text-navy">{title}</h3>
-          <p className="text-lg font-medium text-navy mb-2">
+          <h3 className="text-lg font-serif font-bold mb-1 text-navy">{title}</h3>
+          <p className="text-sm font-medium text-navy mb-1">
             Starting at ${price}
           </p>
-          <p className="text-navy/70 text-sm mb-4">{description}</p>
+          <p className="text-navy/70 text-xs mb-2">{description}</p>
           
-          <div className="mb-4">
-            <h4 className="font-medium text-sm mb-2 text-navy">Services Include:</h4>
-            <ul className="space-y-1 text-navy/70 text-sm">
+          <div className="mb-3">
+            <h4 className="font-medium text-xs mb-1 text-navy">Services:</h4>
+            <ul className="space-y-0.5 text-navy/70 text-xs">
               {serviceIncludes.map((service, index) => (
                 <li key={index} className="flex items-center">
-                  <span className="mr-2">•</span>
+                  <span className="mr-1">•</span>
                   {service}
                 </li>
               ))}
@@ -83,7 +83,7 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
 
         <Link
           href="/contact"
-          className="block w-full text-center bg-navy text-cream px-6 py-2 rounded-lg text-sm font-medium hover:bg-navy-light transition-colors mt-auto"
+          className="block w-full text-center bg-navy text-cream px-4 py-1.5 rounded text-xs font-medium hover:bg-navy-light transition-colors mt-auto"
         >
           Book now
         </Link>
