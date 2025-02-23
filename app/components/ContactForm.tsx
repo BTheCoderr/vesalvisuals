@@ -142,7 +142,7 @@ const ContactForm = () => {
             className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-accent focus:ring-accent"
             value={formData.message}
             onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-            placeholder="Tell us about your vision and what you're looking to achieve..."
+            placeholder="Tell us about your vision and what you&apos;re looking to achieve..."
           />
         </div>
 
@@ -173,7 +173,7 @@ const ContactForm = () => {
 
           {status === 'success' && (
             <p className="mt-4 text-green-600 font-medium animate-fade-in">
-              Message sent successfully! We'll get back to you soon.
+              Message sent successfully! We&apos;ll get back to you soon.
             </p>
           )}
           
