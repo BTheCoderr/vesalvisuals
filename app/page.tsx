@@ -6,46 +6,31 @@ const services = [
   {
     title: 'Photoshoots',
     price: 230,
-    description: 'Professional photography services for all your needs.',
+    description: '',
     images: [
       '/images/(1) vertical 1.jpg'
     ],
-    serviceIncludes: [
-      'Events',
-      'Lifestyle',
-      'Portraits',
-      'Studio',
-      'Sports',
-    ],
+    serviceIncludes: ['Events, Lifestyle, Portraits, Studio, & Sports'],
   },
   {
     title: 'Visualizers',
     price: 320,
-    description: 'Dynamic visual content creation.',
+    description: '',
     images: [
       '/images/(2) vertical 1.jpeg'
     ],
-    serviceIncludes: [
-      'Reels',
-      'Recaps',
-      'Vlogs',
-      'Short-term content',
-    ],
+    serviceIncludes: ['Reels, Recaps, Vlogs, &Short-Term Content'],
   },
   {
     title: 'Premium Photo—Visualizer—Bundle',
     price: 720,
-    description: 'Complete customizable photo & video package.',
+    description: '',
     images: [
       '/images/(3) horizontal.jpg',
       '/images/(3) vertical 1.jpg',
       '/images/(3) vertical 2.jpg'
     ],
-    serviceIncludes: [
-      'Customizable photo & video shoot',
-      'Premium Editing',
-      'Full Rights',
-    ],
+    serviceIncludes: ['Customizable Photo & Video Shoot'],
   },
 ];
 

@@ -15,32 +15,28 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
   const isPremium = title.includes('Premium');
 
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col">
+    <div className="flex flex-col">
+      {/* Images Section */}
       {isPremium ? (
-        <div className="p-4 space-y-3">
-          {/* Top image */}
-          <div className="relative aspect-video rounded-lg overflow-hidden">
+        <div className="mb-6">
+          <div className="relative aspect-video mb-4">
             <Image
               src={images[0]}
               alt={`${title} main image`}
               fill
               priority
-              className="object-cover transition-all duration-300 hover:scale-105"
+              className="object-cover"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
           </div>
-          {/* Bottom two images */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-4">
             {images.slice(1).map((image, index) => (
-              <div 
-                key={index + 1}
-                className="relative aspect-[3/4] rounded-lg overflow-hidden"
-              >
+              <div key={index} className="relative aspect-square">
                 <Image
                   src={image}
                   alt={`${title} image ${index + 2}`}
                   fill
-                  className="object-cover transition-all duration-300 hover:scale-105"
+                  className="object-cover"
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
                 />
               </div>
@@ -48,42 +44,28 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
           </div>
         </div>
       ) : (
-        <div className="relative aspect-[3/4]">
+        <div className="relative aspect-[3/4] mb-6">
           <Image
             src={images[0]}
             alt={`${title} main image`}
             fill
             priority
-            className="object-cover transition-all duration-300 hover:scale-105"
+            className="object-cover"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         </div>
       )}
 
-      <div className="p-3 flex flex-col flex-grow">
-        <div>
-          <h3 className="text-lg font-serif font-bold mb-1 text-navy">{title}</h3>
-          <p className="text-sm font-medium text-navy mb-1">
-            Starting at ${price}
-          </p>
-          <p className="text-navy/70 text-xs mb-2">{description}</p>
-          
-          <div className="mb-3">
-            <h4 className="font-medium text-xs mb-1 text-navy">Services:</h4>
-            <ul className="space-y-0.5 text-navy/70 text-xs">
-              {serviceIncludes.map((service, index) => (
-                <li key={index} className="flex items-center">
-                  <span className="mr-1">•</span>
-                  {service}
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* Text Content */}
+      <div className="space-y-2">
+        <h3 className="text-2xl font-serif">{title}</h3>
+        <p className="text-sm">Starting at ${price}</p>
+        <div className="text-sm">
+          <span className="font-medium">Services include:</span> {serviceIncludes.join(', ')}
         </div>
-
         <Link
           href="/contact"
-          className="block w-full text-center bg-navy text-cream px-4 py-1.5 rounded text-xs font-medium hover:bg-navy-light transition-colors mt-auto"
+          className="inline-block w-full text-center bg-navy text-cream py-2 px-4 rounded mt-4 hover:bg-navy-light transition-colors"
         >
           Book now
         </Link>
