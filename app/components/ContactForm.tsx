@@ -11,14 +11,17 @@ const ContactForm = () => {
     newsletter: false,
     service: 'Photoshoots'
   });
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (submitStatus === 'loading') return;
+    if (status === 'loading') return;
     
-    setSubmitStatus('loading');
+    setStatus('loading');
+    setErrorMessage('');
 
     try {
       const response = await fetch('/api/contact', {
@@ -29,11 +32,13 @@ const ContactForm = () => {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to send email');
+        throw new Error(data.error || 'Failed to send message');
       }
 
-      // Reset form
+      // Reset form on success
       setFormData({
         firstName: '',
         lastName: '',
@@ -42,15 +47,17 @@ const ContactForm = () => {
         newsletter: false,
         service: 'Photoshoots'
       });
-      setSubmitStatus('success');
-
-      // Reset success message after 3 seconds
+      
+      setStatus('success');
+      
+      // Reset success message after 5 seconds
       setTimeout(() => {
-        setSubmitStatus('idle');
-      }, 4000);
+        setStatus('idle');
+      }, 5000);
     } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
+      console.error('Error:', error);
+      setStatus('error');
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to send message');
     }
   };
 
@@ -154,25 +161,25 @@ const ContactForm = () => {
         <div>
           <button
             type="submit"
-            disabled={submitStatus === 'loading'}
+            disabled={status === 'loading'}
             className={`w-full md:w-auto px-8 py-4 rounded-lg text-lg font-medium transition-all duration-200
-              ${submitStatus === 'loading' 
+              ${status === 'loading' 
                 ? 'bg-gray-400 cursor-not-allowed' 
                 : 'bg-accent hover:bg-accent-light'} 
               text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent`}
           >
-            {submitStatus === 'loading' ? 'Sending...' : 'Submit'}
+            {status === 'loading' ? 'Sending...' : 'Submit'}
           </button>
 
-          {submitStatus === 'success' && (
-            <p className="mt-2 text-green-600 font-medium animate-fade-in">
+          {status === 'success' && (
+            <p className="mt-4 text-green-600 font-medium animate-fade-in">
               Message sent successfully! We'll get back to you soon.
             </p>
           )}
           
-          {submitStatus === 'error' && (
-            <p className="mt-2 text-red-600 font-medium animate-fade-in">
-              Failed to send message. Please try again or email us directly at vesalvisuals@gmail.com
+          {status === 'error' && (
+            <p className="mt-4 text-red-600 font-medium animate-fade-in">
+              {errorMessage || 'Failed to send message. Please try again or email us directly at vesalvisuals@gmail.com'}
             </p>
           )}
         </div>

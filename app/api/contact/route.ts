@@ -6,23 +6,21 @@ export async function POST(request: Request) {
     const data = await request.json();
     const { firstName, lastName, email, service, message, newsletter } = data;
 
-    // Create transporter
+    // Create transporter using Gmail SMTP
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
+        pass: process.env.EMAIL_PASS
+      }
     });
 
     // Email content
     const mailOptions = {
-      from: email,
-      to: ['vesalvisuals@gmail.com', 'vesalvisuals@outlook.com'],
+      from: `"${firstName} ${lastName}" <${email}>`,
+      to: process.env.EMAIL_USER,
       subject: `New ${service} Inquiry from ${firstName}`,
       text: `
-New Service Inquiry Details
---------------------------
 Name: ${firstName} ${lastName}
 Email: ${email}
 Service Package: ${service}
@@ -32,7 +30,7 @@ Message:
 ${message}
 
 --------------------------
-Sent from Vesal Visuals website
+Sent from Vesal Visuals website contact form
       `.trim(),
     };
 
@@ -42,6 +40,9 @@ Sent from Vesal Visuals website
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error sending email:', error);
-    return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to send email. Please try again or contact us directly.' }, 
+      { status: 500 }
+    );
   }
 } 
