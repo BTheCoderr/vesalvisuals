@@ -28,8 +28,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <Image src="/images/VESAL VISUALS LOGO (Black).png" alt="Vesal Visuals" width={40} height={40} />
-              <span className="ml-3 text-xl font-serif text-navy">VESAL VISUALS</span>
+              <Image src="/images/VESAL VISUALS LOGO (Black).png" alt="Vesal Visuals" width={60} height={60} />
             </Link>
           </div>
           

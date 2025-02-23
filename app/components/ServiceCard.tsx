@@ -58,7 +58,7 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
 
       {/* Text Content */}
       <div className="space-y-2">
-        <h3 className="text-2xl font-serif">{title}</h3>
+        <h3 className="text-2xl font-serif text-center">{title}</h3>
         <p className="text-sm">Starting at ${price}</p>
         <div className="text-sm">
           <span className="font-medium">Services include:</span> {serviceIncludes.join(', ')}
