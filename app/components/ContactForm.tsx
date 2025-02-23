@@ -61,7 +61,7 @@ const ContactForm = () => {
         throw new Error(errorMessage);
       }
 
-      const data = await response.json();
+      await response.json();
 
       // Reset form on success
       setFormData({
