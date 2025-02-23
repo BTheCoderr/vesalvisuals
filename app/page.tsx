@@ -54,14 +54,14 @@ export default function Home() {
       <Header />
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-16">
-        <div className="text-center mb-12 sm:mb-20">
-          <h1 className="text-4xl sm:text-6xl font-serif text-navy mb-4 sm:mb-6">The Vision</h1>
-          <p className="text-lg sm:text-xl text-navy/80 max-w-3xl mx-auto leading-relaxed">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl font-serif text-navy mb-3 sm:mb-4">The Vision</h1>
+          <p className="text-base sm:text-lg text-navy/80 max-w-2xl mx-auto leading-relaxed">
             Your story deserves to be captured at any scale. Let&apos;s collaborate and bring your creative ideas to life. Schedule a complimentary consultation with Vee to ensure every detail is perfectly catered to your session.
           </p>
         </div>
 
-        <div id="services" className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+        <div id="services" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service, index) => (
             <ServiceCard
               key={index}
