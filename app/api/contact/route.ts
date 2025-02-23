@@ -1,17 +1,12 @@
+'use server';
+
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 export async function POST(request: Request) {
-  if (process.env.NODE_ENV === 'production') {
-    return NextResponse.json(
-      { error: 'This endpoint is for development only' },
-      { status: 404 }
-    );
-  }
-
   try {
     const data = await request.json();
-    const { firstName, lastName, email, service, message, newsletter } = data;
+    const { firstName, lastName, email, message, newsletter } = data;
 
     // Create transporter using Gmail SMTP
     const transporter = nodemailer.createTransport({
@@ -26,18 +21,17 @@ export async function POST(request: Request) {
     const mailOptions = {
       from: `"${firstName} ${lastName}" <${email}>`,
       to: process.env.EMAIL_USER,
-      subject: `New ${service} Inquiry from ${firstName}`,
+      subject: `New Inquiry from ${firstName}`,
       text: `
 Name: ${firstName} ${lastName}
 Email: ${email}
-Service Package: ${service}
 Newsletter Signup: ${newsletter ? 'Yes' : 'No'}
 
 Message:
 ${message}
 
 --------------------------
-Sent from Vesal Visuals website contact form (Development)
+Sent from Vesal Visuals website contact form
       `.trim(),
     };
 
@@ -48,7 +42,7 @@ Sent from Vesal Visuals website contact form (Development)
   } catch (error) {
     console.error('Error sending email:', error);
     return NextResponse.json(
-      { error: 'Failed to send email. Please try again or contact us directly.' },
+      { error: 'Failed to send email. Please try again.' },
       { status: 500 }
     );
   }

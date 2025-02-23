@@ -6,12 +6,11 @@ import Image from 'next/image';
 interface ServiceCardProps {
   title: string;
   price: number;
-  description: string;
   images: string[];
   serviceIncludes: string[];
 }
 
-const ServiceCard = ({ title, price, description, images, serviceIncludes }: ServiceCardProps) => {
+const ServiceCard = ({ title, price, images, serviceIncludes }: ServiceCardProps) => {
   const isPremium = title.includes('Premium');
 
   return (
