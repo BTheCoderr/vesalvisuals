@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import ServiceCard from './components/ServiceCard';
+import ContactFooter from './components/ContactFooter';
 
 const services = [
   {
@@ -75,6 +76,8 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      <ContactFooter />
     </main>
   );
 }
