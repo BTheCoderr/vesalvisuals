@@ -51,9 +51,9 @@ export default function Home() {
       <Header />
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-16">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-serif text-navy mb-2">The Vision</h1>
-          <p className="text-sm text-navy/80 max-w-xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-serif text-navy">The Vision</h1>
+          <p className="text-sm text-navy/80 max-w-xl text-right">
             Let&apos;s create something amazing together.
           </p>
         </div>
