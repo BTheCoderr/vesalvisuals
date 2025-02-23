@@ -5,7 +5,7 @@ const services = [
   {
     title: 'Photoshoots',
     price: 230,
-    description: 'Capture your moments.',
+    description: 'Professional photography services for all your needs.',
     images: [
       '/images/(1) vertical 1.jpg'
     ],
@@ -13,12 +13,14 @@ const services = [
       'Events',
       'Lifestyle',
       'Portraits',
+      'Studio',
+      'Sports',
     ],
   },
   {
     title: 'Visualizers',
     price: 320,
-    description: 'Bring your vision to life.',
+    description: 'Dynamic visual content creation.',
     images: [
       '/images/(2) vertical 1.jpeg'
     ],
@@ -26,19 +28,20 @@ const services = [
       'Reels',
       'Recaps',
       'Vlogs',
+      'Short-term content',
     ],
   },
   {
-    title: 'Premium Bundle',
+    title: 'Premium Photo—Visualizer—Bundle',
     price: 720,
-    description: 'The complete package.',
+    description: 'Complete customizable photo & video package.',
     images: [
       '/images/(3) horizontal.jpg',
       '/images/(3) vertical 1.jpg',
       '/images/(3) vertical 2.jpg'
     ],
     serviceIncludes: [
-      'Custom Photo & Video',
+      'Customizable photo & video shoot',
       'Premium Editing',
       'Full Rights',
     ],
@@ -51,9 +54,9 @@ export default function Home() {
       <Header />
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-16">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-serif text-navy">The Vision</h1>
-          <p className="text-sm text-navy/80 max-w-xl text-center leading-relaxed">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+          <h1 className="text-4xl font-serif text-navy">Services</h1>
+          <p className="text-sm text-navy/80 max-w-xl text-left md:text-right leading-relaxed">
             The Vision can be on any scale you&apos;d like it. Let&apos;s come together and envision the artist within. Schedule a complementary consultation with Vee to ensure every detail is perfectly catered to your Session.
           </p>
         </div>
