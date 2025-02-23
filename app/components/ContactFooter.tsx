@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useState } from 'react';
 
 const ContactFooter = () => {
@@ -73,7 +72,7 @@ const ContactFooter = () => {
             <h2 className="text-4xl font-serif mb-4">Contact Info</h2>
             <p className="text-sm italic mb-6">Up to 20 Minutes of Complimentary Consultation.</p>
             <p className="text-sm">
-              Leave a simple message entailing which "Service" you are interested in.
+              Leave a simple message entailing which &quot;Service&quot; you are interested in.
               <br />
               Photoshoots, Visualizer, Or Premium Photo—Visualizer
             </p>
