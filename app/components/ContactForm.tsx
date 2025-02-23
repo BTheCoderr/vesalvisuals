@@ -36,7 +36,12 @@ const ContactForm = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/.netlify/functions/contact', {
+      // Use development endpoint in development, Netlify function in production
+      const endpoint = process.env.NODE_ENV === 'development' 
+        ? '/api/contact' 
+        : '/.netlify/functions/contact';
+
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,11 +49,19 @@ const ContactForm = () => {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message');
+        const errorData = await response.text();
+        let errorMessage;
+        try {
+          const jsonError = JSON.parse(errorData);
+          errorMessage = jsonError.error;
+        } catch (e) {
+          errorMessage = 'Failed to send message';
+        }
+        throw new Error(errorMessage);
       }
+
+      const data = await response.json();
 
       // Reset form on success
       setFormData({

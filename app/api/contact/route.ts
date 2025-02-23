@@ -2,6 +2,13 @@ import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 export async function POST(request: Request) {
+  if (process.env.NODE_ENV === 'production') {
+    return NextResponse.json(
+      { error: 'This endpoint is for development only' },
+      { status: 404 }
+    );
+  }
+
   try {
     const data = await request.json();
     const { firstName, lastName, email, service, message, newsletter } = data;
@@ -30,7 +37,7 @@ Message:
 ${message}
 
 --------------------------
-Sent from Vesal Visuals website contact form
+Sent from Vesal Visuals website contact form (Development)
       `.trim(),
     };
 
@@ -41,7 +48,7 @@ Sent from Vesal Visuals website contact form
   } catch (error) {
     console.error('Error sending email:', error);
     return NextResponse.json(
-      { error: 'Failed to send email. Please try again or contact us directly.' }, 
+      { error: 'Failed to send email. Please try again or contact us directly.' },
       { status: 500 }
     );
   }

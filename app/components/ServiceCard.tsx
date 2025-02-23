@@ -24,6 +24,7 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
               src={images[0]}
               alt={`${title} main image`}
               fill
+              priority
               className="object-cover transition-all duration-300 hover:scale-105"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
@@ -52,6 +53,7 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
             src={images[0]}
             alt={`${title} main image`}
             fill
+            priority
             className="object-cover"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
