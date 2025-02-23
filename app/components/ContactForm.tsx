@@ -55,7 +55,7 @@ const ContactForm = () => {
         try {
           const jsonError = JSON.parse(errorData);
           errorMessage = jsonError.error;
-        } catch (_e) {
+        } catch {
           errorMessage = 'Failed to send message';
         }
         throw new Error(errorMessage);
