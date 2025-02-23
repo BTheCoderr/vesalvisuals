@@ -51,7 +51,7 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
         </div>
       )}
 
-      <div className="px-8 py-6 flex flex-col flex-grow">
+      <div className="p-8 flex flex-col flex-grow">
         <div className="flex-grow">
           <h3 className="text-3xl font-serif font-bold mb-3 text-navy">{title}</h3>
           <p className="text-xl font-medium text-navy mb-4">
@@ -74,7 +74,7 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
 
         <Link
           href="/contact"
-          className="inline-block w-full text-center bg-navy text-cream px-8 py-4 rounded-lg text-lg font-medium hover:bg-navy-light transition-colors mt-auto"
+          className="block w-full text-center bg-navy text-cream px-8 py-4 rounded-lg text-lg font-medium hover:bg-navy-light transition-colors mt-auto"
         >
           Book now
         </Link>
