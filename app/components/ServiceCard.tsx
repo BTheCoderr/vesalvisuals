@@ -48,15 +48,37 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
           </div>
         </div>
       ) : (
-        <div className="relative w-full aspect-[16/9]">
-          <Image
-            src={images[0]}
-            alt={`${title} main image`}
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
+        <div className="grid grid-cols-1 gap-3 p-4">
+          {/* Main large image */}
+          <div className="relative aspect-[16/9] rounded-lg overflow-hidden">
+            <Image
+              src={images[0]}
+              alt={`${title} main image`}
+              fill
+              priority
+              className="object-cover transition-all duration-300 hover:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          </div>
+          {/* Additional images if available */}
+          {images.length > 1 && (
+            <div className="grid grid-cols-2 gap-3">
+              {images.slice(1).map((image, index) => (
+                <div 
+                  key={index + 1}
+                  className="relative aspect-[4/3] rounded-lg overflow-hidden"
+                >
+                  <Image
+                    src={image}
+                    alt={`${title} image ${index + 2}`}
+                    fill
+                    className="object-cover transition-all duration-300 hover:scale-105"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 16vw"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 

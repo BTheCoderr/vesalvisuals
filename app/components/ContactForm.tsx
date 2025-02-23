@@ -182,7 +182,7 @@ const ContactForm = () => {
               checked={formData.newsletter}
               onChange={(e) => setFormData(prev => ({ ...prev, newsletter: e.target.checked }))}
             />
-            <span className="text-sm text-navy/80">Sign up for news and updates</span>
+            <span className="text-sm text-navy/80">Sign up for future updates and rewards</span>
           </label>
         </div>
 
