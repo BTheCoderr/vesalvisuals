@@ -22,12 +22,7 @@ const ContactFooter = () => {
     setErrorMessage('');
 
     try {
-      // Use development endpoint in development, Netlify function in production
-      const endpoint = process.env.NODE_ENV === 'development' 
-        ? '/api/contact' 
-        : '/.netlify/functions/contact';
-
-      const response = await fetch(endpoint, {
+      const response = await fetch('/.netlify/functions/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
