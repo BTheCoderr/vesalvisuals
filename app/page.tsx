@@ -57,7 +57,7 @@ export default function Home() {
         <div className="text-center mb-12 sm:mb-20">
           <h1 className="text-4xl sm:text-6xl font-serif text-navy mb-4 sm:mb-6">The Vision</h1>
           <p className="text-lg sm:text-xl text-navy/80 max-w-3xl mx-auto leading-relaxed">
-            The Vision can be on any scale you&apos;d like it. Let&apos;s come together and envision the artist within. Schedule a complementary consultation with Vee to ensure every detail is perfectly catered to your Session.
+            Your story deserves to be captured at any scale. Let&apos;s collaborate and bring your creative ideas to life. Schedule a complimentary consultation with Vee to ensure every detail is perfectly catered to your session.
           </p>
         </div>
 
