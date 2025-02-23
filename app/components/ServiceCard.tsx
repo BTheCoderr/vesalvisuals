@@ -14,7 +14,7 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
   const isPremium = title.includes('Premium');
 
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col h-full">
       {isPremium ? (
         <div className="p-4 space-y-3">
           {/* Top image */}
@@ -51,28 +51,30 @@ const ServiceCard = ({ title, price, description, images, serviceIncludes }: Ser
         </div>
       )}
 
-      <div className={`px-8 py-6`}>
-        <h3 className="text-3xl font-serif font-bold mb-3 text-navy">{title}</h3>
-        <p className="text-xl font-medium text-navy mb-4">
-          Starting at ${price}
-        </p>
-        <p className="text-navy/70 text-lg mb-6">{description}</p>
-        
-        <div className="mb-8">
-          <h4 className="font-medium text-lg mb-3 text-navy">Services Include:</h4>
-          <ul className="space-y-2 text-navy/70">
-            {serviceIncludes.map((service, index) => (
-              <li key={index} className="flex items-center">
-                <span className="mr-2">•</span>
-                {service}
-              </li>
-            ))}
-          </ul>
+      <div className="px-8 py-6 flex flex-col flex-grow">
+        <div className="flex-grow">
+          <h3 className="text-3xl font-serif font-bold mb-3 text-navy">{title}</h3>
+          <p className="text-xl font-medium text-navy mb-4">
+            Starting at ${price}
+          </p>
+          <p className="text-navy/70 text-lg mb-6">{description}</p>
+          
+          <div className="mb-8">
+            <h4 className="font-medium text-lg mb-3 text-navy">Services Include:</h4>
+            <ul className="space-y-2 text-navy/70">
+              {serviceIncludes.map((service, index) => (
+                <li key={index} className="flex items-center">
+                  <span className="mr-2">•</span>
+                  {service}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <Link
           href="/contact"
-          className="inline-block w-full text-center bg-navy text-cream px-8 py-4 rounded-lg text-lg font-medium hover:bg-navy-light transition-colors"
+          className="inline-block w-full text-center bg-navy text-cream px-8 py-4 rounded-lg text-lg font-medium hover:bg-navy-light transition-colors mt-auto"
         >
           Book now
         </Link>

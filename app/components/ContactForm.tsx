@@ -21,46 +21,28 @@ const ContactForm = () => {
     setSubmitStatus('loading');
 
     try {
-      const subject = `New ${formData.service} Inquiry from ${formData.firstName}`;
-      const body = `
-New Service Inquiry Details
---------------------------
-Name: ${formData.firstName} ${formData.lastName}
-Email: ${formData.email}
-Service Package: ${formData.service}
-Newsletter Signup: ${formData.newsletter ? 'Yes' : 'No'}
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-Message:
-${formData.message}
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
 
---------------------------
-Sent from Vesal Visuals website
-      `.trim();
-
-      // Primary and backup email addresses
-      const emailAddresses = [
-        'vesalvisuals@gmail.com',
-        'vesalvisuals@outlook.com'
-      ].join(',');
-
-      // Create email link with all parameters properly encoded
-      const mailtoLink = `mailto:${emailAddresses}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      
-      // Open email client
-      window.location.href = mailtoLink;
-      
-      // Reset form after short delay
-      setTimeout(() => {
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          message: '',
-          newsletter: false,
-          service: 'Photoshoots'
-        });
-        setSubmitStatus('success');
-      }, 1000);
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        message: '',
+        newsletter: false,
+        service: 'Photoshoots'
+      });
+      setSubmitStatus('success');
 
       // Reset success message after 3 seconds
       setTimeout(() => {
@@ -179,18 +161,18 @@ Sent from Vesal Visuals website
                 : 'bg-accent hover:bg-accent-light'} 
               text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent`}
           >
-            {submitStatus === 'loading' ? 'Opening Email...' : 'Submit'}
+            {submitStatus === 'loading' ? 'Sending...' : 'Submit'}
           </button>
 
           {submitStatus === 'success' && (
             <p className="mt-2 text-green-600 font-medium animate-fade-in">
-              Email client opened! Please send your message.
+              Message sent successfully! We'll get back to you soon.
             </p>
           )}
           
           {submitStatus === 'error' && (
             <p className="mt-2 text-red-600 font-medium animate-fade-in">
-              Error opening email client. Please try again or email us directly.
+              Failed to send message. Please try again or email us directly at vesalvisuals@gmail.com
             </p>
           )}
         </div>
