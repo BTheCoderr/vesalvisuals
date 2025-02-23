@@ -36,7 +36,7 @@ const ContactForm = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/.netlify/functions/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -120,7 +120,6 @@ const ContactForm = () => {
             type="email"
             id="email"
             required
-            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
             className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-accent focus:ring-accent"
             value={formData.email}
             onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
