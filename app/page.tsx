@@ -7,7 +7,7 @@ const services = [
     price: 230,
     description: 'Professional photography services for all your needs.',
     images: [
-      'https://images.unsplash.com/photo-1542038784456-1ea8e935640e'
+      '/images/(1) vertical 1.jpg'
     ],
     serviceIncludes: [
       'Events',
@@ -22,7 +22,7 @@ const services = [
     price: 320,
     description: 'High-quality visual content creation for your brand.',
     images: [
-      'https://images.unsplash.com/photo-1601506521793-dc748fc80b67'
+      '/images/(2) vertical 1.jpeg'
     ],
     serviceIncludes: [
       'Reels',
@@ -36,9 +36,9 @@ const services = [
     price: 720,
     description: 'Complete package combining premium photography and visual content.',
     images: [
-      'https://images.unsplash.com/photo-1516035069371-29a1b244cc32',
-      'https://images.unsplash.com/photo-1533488765986-dfa2a9939acd',
-      'https://images.unsplash.com/photo-1603574670812-d24560880210'
+      '/images/(3) horizontal.jpg',
+      '/images/(3) vertical 1.jpg',
+      '/images/(3) vertical 2.jpg'
     ],
     serviceIncludes: [
       'Customizable Photo & Video Shoot',
