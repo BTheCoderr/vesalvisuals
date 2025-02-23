@@ -54,7 +54,7 @@ export default function Home() {
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-serif text-navy">The Vision</h1>
           <p className="text-sm text-navy/80 max-w-xl text-right">
-            Let&apos;s create something amazing together.
+            The Vision can be on any scale you&apos;d like it. Let&apos;s come together and envision the artist within. Schedule a complementary consultation with Vee to ensure every detail is perfectly catered to your Session.
           </p>
         </div>
 
