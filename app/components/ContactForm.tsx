@@ -15,10 +15,22 @@ const ContactForm = () => {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const validateEmail = (email: string) => {
+    // Basic email validation
+    return email.includes('@') && email.includes('.');
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (status === 'loading') return;
+
+    // Validate email
+    if (!validateEmail(formData.email)) {
+      setStatus('error');
+      setErrorMessage('Please enter a valid email address');
+      return;
+    }
     
     setStatus('loading');
     setErrorMessage('');
@@ -108,10 +120,14 @@ const ContactForm = () => {
             type="email"
             id="email"
             required
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
             className="block w-full rounded-lg border-gray-300 shadow-sm focus:border-accent focus:ring-accent"
             value={formData.email}
             onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
           />
+          {status === 'error' && errorMessage.includes('email') && (
+            <p className="mt-1 text-sm text-red-600">{errorMessage}</p>
+          )}
         </div>
 
         <div>
@@ -177,7 +193,7 @@ const ContactForm = () => {
             </p>
           )}
           
-          {status === 'error' && (
+          {status === 'error' && !errorMessage.includes('email') && (
             <p className="mt-4 text-red-600 font-medium animate-fade-in">
               {errorMessage || 'Failed to send message. Please try again or email us directly at vesalvisuals@gmail.com'}
             </p>
