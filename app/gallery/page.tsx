@@ -28,18 +28,6 @@ const galleryItems = {
   ],
   visualizers: [
     { 
-      src: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae',
-      title: 'Music Video', 
-      category: 'Music',
-      description: 'Professional music video production'
-    },
-    { 
-      src: 'https://images.unsplash.com/photo-1485846234645-a62644f84728',
-      title: 'Short Film', 
-      category: 'Film',
-      description: 'Cinematic storytelling'
-    },
-    { 
       src: 'https://images.unsplash.com/photo-1540655037529-dec987208707',
       title: 'Video Production', 
       category: 'Production',
