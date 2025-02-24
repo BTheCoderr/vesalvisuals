@@ -1,6 +1,7 @@
 import Header from './components/Header';
 import ServiceCard from './components/ServiceCard';
 import ContactFooter from './components/ContactFooter';
+import Image from 'next/image';
 
 const services = [
   {
@@ -40,13 +41,37 @@ export default function Home() {
       <Header />
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-16">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-          <h1 className="text-4xl font-serif text-navy">The Vision</h1>
-          <p className="text-sm text-navy/80 w-[600px] text-right">
-            The Vision can be on any scale you&apos;d like it. Let&apos;s come together and envision the artist within. Schedule a complimentary consultation with Vee to ensure every detail is perfectly catered to your Session.
-          </p>
+        {/* Logo Section */}
+        <div className="flex justify-center mb-16">
+          <Image 
+            src="/images/VESAL VISUALS LOGO (Black).png" 
+            alt="Vesal Visuals" 
+            width={200} 
+            height={200}
+            className="object-contain"
+          />
         </div>
 
+        {/* Vision Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-16">
+          <h1 className="text-4xl font-serif text-navy">The Vision</h1>
+          <div className="md:w-[600px] flex flex-col gap-2">
+            <p className="text-sm text-navy/80 text-right">
+              Your story deserves to be captured at any scale.
+            </p>
+            <p className="text-sm text-navy/80 text-right">
+              Let&apos;s collaborate and bring your creative ideas to life.
+            </p>
+            <p className="text-sm text-navy/80 text-right">
+              Schedule a complimentary consultation with Vee to ensure
+            </p>
+            <p className="text-sm text-navy/80 text-right">
+              every detail is perfectly catered to your session.
+            </p>
+          </div>
+        </div>
+
+        {/* Services Section */}
         <div id="services" className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {services.map((service, index) => (
             <div 
