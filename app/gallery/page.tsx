@@ -51,6 +51,12 @@ const galleryItems = {
       category: 'Production',
       description: 'Professional video production setup'
     },
+    { 
+      src: 'https://images.unsplash.com/photo-1598899134739-24c46f58b8c0',
+      title: 'Studio Setup',
+      category: 'Production',
+      description: 'Professional studio equipment'
+    }
   ],
   premium: [
     { 
