@@ -6,8 +6,8 @@ import { useState } from 'react';
 
 // Helper function to generate placeholder image URLs
 const getPlaceholderImage = (category: string, index: number) => {
-  const width = 800;
-  const height = 1200;
+  const width = 1200;
+  const height = 800; // Changed to horizontal aspect ratio
   const keywords = {
     Portrait: 'professional+portrait',
     Studio: 'studio+photography',
@@ -99,18 +99,18 @@ const GalleryPage = () => {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <h1 className="text-4xl font-serif text-navy text-center mb-16 animate-fade-in">Gallery</h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+        <div className="space-y-24">
           {Object.entries(galleryItems).map(([section, items]) => (
             <section key={section} id={section} className="scroll-mt-24">
               <h2 className="text-2xl font-serif text-navy mb-8 text-center">
                 {section === 'premium' ? 'Premium Photo—Visualizer—Bundle' : section.charAt(0).toUpperCase() + section.slice(1)}
               </h2>
               
-              <div className="space-y-8">
+              <div className="flex flex-nowrap gap-8 overflow-x-auto pb-4 snap-x snap-mandatory">
                 {items.map((item, index) => (
                   <div
                     key={index}
-                    className="group relative aspect-[3/4] overflow-hidden rounded-lg shadow-lg transition-all duration-500 hover:shadow-2xl bg-gray-100"
+                    className="group relative aspect-[16/9] w-[600px] flex-shrink-0 overflow-hidden rounded-lg shadow-lg transition-all duration-500 hover:shadow-2xl bg-gray-100 snap-center"
                     onMouseEnter={() => setHoveredItem({ section, index })}
                     onMouseLeave={() => setHoveredItem(null)}
                     style={{
@@ -139,7 +139,7 @@ const GalleryPage = () => {
                       className={`object-cover transition-all duration-700 group-hover:scale-110 ${
                         loadedImages.has(item.src) ? 'opacity-100' : 'opacity-0'
                       }`}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, 600px"
                       onLoad={() => handleImageLoad(item.src)}
                     />
                     
