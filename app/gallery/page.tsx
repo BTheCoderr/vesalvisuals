@@ -34,7 +34,7 @@ const galleryItems = {
       description: 'High-quality video content'
     },
     { 
-      src: 'https://images.unsplash.com/photo-1579965342575-16428a7c8881',
+      src: 'https://images.unsplash.com/photo-1533702165324-66678e2069b2',
       title: 'Behind the Scenes', 
       category: 'Production',
       description: 'Professional video production setup'
@@ -60,7 +60,7 @@ const galleryItems = {
       description: 'High-end studio sessions'
     },
     { 
-      src: 'https://images.unsplash.com/photo-1504680177321-2e9a29bc0bd7',
+      src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30',
       title: 'Premium Event', 
       category: 'Event',
       description: 'Luxury event coverage'
