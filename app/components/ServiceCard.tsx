@@ -23,7 +23,7 @@ const ServiceCard = ({ title, price, images, serviceIncludes }: ServiceCardProps
       {/* Images Section */}
       {isPremium ? (
         <div className="mb-6">
-          <Link href={`/gallery?section=${gallerySection}`} className="block">
+          <Link href={`/gallery#${gallerySection}`} className="block">
             <div className="relative aspect-video mb-4">
               <Image
                 src={images[0]}
@@ -50,7 +50,7 @@ const ServiceCard = ({ title, price, images, serviceIncludes }: ServiceCardProps
           </Link>
         </div>
       ) : (
-        <Link href={`/gallery?section=${gallerySection}`} className="block">
+        <Link href={`/gallery#${gallerySection}`} className="block">
           <div className="relative aspect-[3/4] mb-6">
             <Image
               src={images[0]}
@@ -66,7 +66,7 @@ const ServiceCard = ({ title, price, images, serviceIncludes }: ServiceCardProps
 
       {/* Text Content */}
       <div className="space-y-2 text-center">
-        <Link href={`/gallery?section=${gallerySection}`} className="inline-block">
+        <Link href={`/gallery#${gallerySection}`} className="inline-block">
           <h3 className="text-2xl font-serif hover:text-navy-light transition-colors">{title}</h3>
         </Link>
         <p className="text-sm">Starting at ${price}</p>
@@ -76,7 +76,7 @@ const ServiceCard = ({ title, price, images, serviceIncludes }: ServiceCardProps
           {serviceIncludes.join(', ')}
         </div>
         <Link
-          href="/contact"
+          href={`/gallery#${gallerySection}`}
           className="inline-block w-full text-center bg-navy text-cream py-2 px-4 rounded mt-4 hover:bg-navy-light transition-colors"
         >
           Book now

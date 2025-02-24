@@ -3,7 +3,7 @@
 import Header from '../components/Header';
 import ContactFooter from '../components/ContactFooter';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const galleryItems = {
   photoshoots: [
@@ -70,6 +70,16 @@ const galleryItems = {
 
 const GalleryPage = () => {
   const [hoveredItem, setHoveredItem] = useState<{section: string, index: number} | null>(null);
+
+  useEffect(() => {
+    // Scroll to section if hash is present
+    if (window.location.hash) {
+      const element = document.querySelector(window.location.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, []);
 
   return (
     <main className="min-h-screen bg-cream">
