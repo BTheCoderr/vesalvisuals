@@ -4,82 +4,65 @@ import Header from '../components/Header';
 import Image from 'next/image';
 import { useState } from 'react';
 
-// Helper function to generate placeholder image URLs
-const getPlaceholderImage = (category: string) => {
-  const width = 1200;
-  const height = 800;
-  const keywords = {
-    Portrait: 'professional+portrait',
-    Studio: 'studio+photography',
-    Event: 'event+photography',
-    Music: 'music+video+production',
-    Film: 'film+production',
-    Production: 'video+production',
-    Bundle: 'photography+studio',
-  };
-  
-  return `https://source.unsplash.com/${width}x${height}/?${keywords[category as keyof typeof keywords] || 'photography'}`;
-};
-
 const galleryItems = {
   photoshoots: [
     { 
-      src: '/images/(1) vertical 1.jpg', 
-      placeholder: getPlaceholderImage('Portrait'),
+      src: 'https://images.unsplash.com/photo-1581591524425-c7e0978865fc',
       title: 'Portrait Session', 
-      category: 'Portrait' 
+      category: 'Portrait',
+      description: 'Professional studio portraits'
     },
     { 
-      src: '/images/(3) vertical 1.jpg', 
-      placeholder: getPlaceholderImage('Studio'),
+      src: 'https://images.unsplash.com/photo-1533662635785-9050edb07d21',
       title: 'Studio Photography', 
-      category: 'Studio' 
+      category: 'Studio',
+      description: 'Creative studio sessions'
     },
     { 
-      src: '/images/(3) vertical 2.jpg', 
-      placeholder: getPlaceholderImage('Event'),
+      src: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4',
       title: 'Event Coverage', 
-      category: 'Event' 
+      category: 'Event',
+      description: 'Special moments captured'
     },
   ],
   visualizers: [
     { 
-      src: '/images/(2) vertical 1.jpeg', 
-      placeholder: getPlaceholderImage('Music'),
+      src: 'https://images.unsplash.com/photo-1598387993441-a364f854c3e1',
       title: 'Music Video', 
-      category: 'Music' 
+      category: 'Music',
+      description: 'Professional music video production'
     },
     { 
-      src: '/images/(3) horizontal.jpg', 
-      placeholder: getPlaceholderImage('Film'),
+      src: 'https://images.unsplash.com/photo-1585840887185-57a8557f0163',
       title: 'Short Film', 
-      category: 'Film' 
+      category: 'Film',
+      description: 'Cinematic storytelling'
     },
     { 
-      src: '/images/visualizer-1.jpg', 
-      placeholder: getPlaceholderImage('Production'),
+      src: 'https://images.unsplash.com/photo-1579965342575-16428a7c8881',
       title: 'Video Production', 
-      category: 'Production' 
+      category: 'Production',
+      description: 'High-quality video content'
     },
   ],
   premium: [
     { 
-      src: '/images/(3) horizontal.jpg', 
-      placeholder: getPlaceholderImage('Bundle'),
+      src: 'https://images.unsplash.com/photo-1576824303923-1c2437339744',
       title: 'Premium Package', 
-      category: 'Bundle' 
+      category: 'Bundle',
+      description: 'Complete media package'
     },
     { 
-      src: '/images/(3) vertical 1.jpg', 
-      placeholder: getPlaceholderImage('Studio'),
+      src: 'https://images.unsplash.com/photo-1617575521317-d2974f3b56d2',
       title: 'Premium Studio', 
-      category: 'Studio' 
+      category: 'Studio',
+      description: 'High-end studio sessions'
     },
     { 
-      src: '/images/(3) vertical 2.jpg', 
-      placeholder: getPlaceholderImage('Event'),
+      src: 'https://images.unsplash.com/photo-1571624436279-b272aff752b5',
       title: 'Premium Event', 
-      category: 'Event' 
+      category: 'Event',
+      description: 'Luxury event coverage'
     },
   ]
 };
@@ -120,25 +103,11 @@ const GalleryPage = () => {
                       transition: 'transform 0.5s ease-out'
                     }}
                   >
-                    {/* Placeholder Image */}
                     <Image
-                      src={item.placeholder}
-                      alt={`${item.title} placeholder`}
-                      fill
-                      className={`object-cover transition-opacity duration-300 ${
-                        loadedImages.has(item.src) ? 'opacity-0' : 'opacity-100'
-                      }`}
-                      priority
-                    />
-                    
-                    {/* Main Image */}
-                    <Image
-                      src={item.src}
+                      src={`${item.src}?auto=format&fit=crop&w=1200&h=800&q=80`}
                       alt={item.title}
                       fill
-                      className={`object-cover transition-all duration-700 group-hover:scale-110 ${
-                        loadedImages.has(item.src) ? 'opacity-100' : 'opacity-0'
-                      }`}
+                      className="object-cover transition-all duration-700 group-hover:scale-110"
                       sizes="(max-width: 640px) 100vw, 600px"
                       onLoad={() => handleImageLoad(item.src)}
                     />
@@ -153,7 +122,8 @@ const GalleryPage = () => {
                     >
                       <div className="absolute bottom-0 left-0 right-0 p-6 transform transition-all duration-500">
                         <span className="text-cream/80 text-sm font-medium mb-2 block">{item.category}</span>
-                        <h3 className="text-cream font-serif text-xl">{item.title}</h3>
+                        <h3 className="text-cream font-serif text-xl mb-2">{item.title}</h3>
+                        <p className="text-cream/90 text-sm">{item.description}</p>
                       </div>
                     </div>
                   </div>
