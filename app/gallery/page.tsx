@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 // Helper function to generate placeholder image URLs
-const getPlaceholderImage = (category: string, index: number) => {
+const getPlaceholderImage = (category: string) => {
   const width = 1200;
-  const height = 800; // Changed to horizontal aspect ratio
+  const height = 800;
   const keywords = {
     Portrait: 'professional+portrait',
     Studio: 'studio+photography',
@@ -25,19 +25,19 @@ const galleryItems = {
   photoshoots: [
     { 
       src: '/images/(1) vertical 1.jpg', 
-      placeholder: getPlaceholderImage('Portrait', 1),
+      placeholder: getPlaceholderImage('Portrait'),
       title: 'Portrait Session', 
       category: 'Portrait' 
     },
     { 
       src: '/images/(3) vertical 1.jpg', 
-      placeholder: getPlaceholderImage('Studio', 1),
+      placeholder: getPlaceholderImage('Studio'),
       title: 'Studio Photography', 
       category: 'Studio' 
     },
     { 
       src: '/images/(3) vertical 2.jpg', 
-      placeholder: getPlaceholderImage('Event', 1),
+      placeholder: getPlaceholderImage('Event'),
       title: 'Event Coverage', 
       category: 'Event' 
     },
@@ -45,19 +45,19 @@ const galleryItems = {
   visualizers: [
     { 
       src: '/images/(2) vertical 1.jpeg', 
-      placeholder: getPlaceholderImage('Music', 1),
+      placeholder: getPlaceholderImage('Music'),
       title: 'Music Video', 
       category: 'Music' 
     },
     { 
       src: '/images/(3) horizontal.jpg', 
-      placeholder: getPlaceholderImage('Film', 1),
+      placeholder: getPlaceholderImage('Film'),
       title: 'Short Film', 
       category: 'Film' 
     },
     { 
       src: '/images/visualizer-1.jpg', 
-      placeholder: getPlaceholderImage('Production', 1),
+      placeholder: getPlaceholderImage('Production'),
       title: 'Video Production', 
       category: 'Production' 
     },
@@ -65,19 +65,19 @@ const galleryItems = {
   premium: [
     { 
       src: '/images/(3) horizontal.jpg', 
-      placeholder: getPlaceholderImage('Bundle', 1),
+      placeholder: getPlaceholderImage('Bundle'),
       title: 'Premium Package', 
       category: 'Bundle' 
     },
     { 
       src: '/images/(3) vertical 1.jpg', 
-      placeholder: getPlaceholderImage('Studio', 2),
+      placeholder: getPlaceholderImage('Studio'),
       title: 'Premium Studio', 
       category: 'Studio' 
     },
     { 
       src: '/images/(3) vertical 2.jpg', 
-      placeholder: getPlaceholderImage('Event', 2),
+      placeholder: getPlaceholderImage('Event'),
       title: 'Premium Event', 
       category: 'Event' 
     },
