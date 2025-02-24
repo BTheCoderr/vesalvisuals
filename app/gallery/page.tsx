@@ -1,6 +1,7 @@
 'use client';
 
 import Header from '../components/Header';
+import ContactFooter from '../components/ContactFooter';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -43,6 +44,12 @@ const galleryItems = {
       title: 'Video Production', 
       category: 'Production',
       description: 'High-quality video content'
+    },
+    { 
+      src: 'https://images.unsplash.com/photo-1579965342575-16428a7c8881',
+      title: 'Behind the Scenes', 
+      category: 'Production',
+      description: 'Professional video production setup'
     },
   ],
   premium: [
@@ -128,6 +135,8 @@ const GalleryPage = () => {
           ))}
         </div>
       </div>
+
+      <ContactFooter />
     </main>
   );
 };
