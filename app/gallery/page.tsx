@@ -7,19 +7,19 @@ import { useState } from 'react';
 const galleryItems = {
   photoshoots: [
     { 
-      src: 'https://images.unsplash.com/photo-1581591524425-c7e0978865fc',
+      src: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e',
       title: 'Portrait Session', 
       category: 'Portrait',
       description: 'Professional studio portraits'
     },
     { 
-      src: 'https://images.unsplash.com/photo-1533662635785-9050edb07d21',
+      src: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32',
       title: 'Studio Photography', 
       category: 'Studio',
       description: 'Creative studio sessions'
     },
     { 
-      src: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4',
+      src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30',
       title: 'Event Coverage', 
       category: 'Event',
       description: 'Special moments captured'
@@ -27,19 +27,19 @@ const galleryItems = {
   ],
   visualizers: [
     { 
-      src: 'https://images.unsplash.com/photo-1598387993441-a364f854c3e1',
+      src: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae',
       title: 'Music Video', 
       category: 'Music',
       description: 'Professional music video production'
     },
     { 
-      src: 'https://images.unsplash.com/photo-1585840887185-57a8557f0163',
+      src: 'https://images.unsplash.com/photo-1485846234645-a62644f84728',
       title: 'Short Film', 
       category: 'Film',
       description: 'Cinematic storytelling'
     },
     { 
-      src: 'https://images.unsplash.com/photo-1579965342575-16428a7c8881',
+      src: 'https://images.unsplash.com/photo-1540655037529-dec987208707',
       title: 'Video Production', 
       category: 'Production',
       description: 'High-quality video content'
@@ -47,19 +47,19 @@ const galleryItems = {
   ],
   premium: [
     { 
-      src: 'https://images.unsplash.com/photo-1576824303923-1c2437339744',
+      src: 'https://images.unsplash.com/photo-1603380353725-f8a4d39cc41e',
       title: 'Premium Package', 
       category: 'Bundle',
       description: 'Complete media package'
     },
     { 
-      src: 'https://images.unsplash.com/photo-1617575521317-d2974f3b56d2',
+      src: 'https://images.unsplash.com/photo-1593414220166-085caeae0382',
       title: 'Premium Studio', 
       category: 'Studio',
       description: 'High-end studio sessions'
     },
     { 
-      src: 'https://images.unsplash.com/photo-1571624436279-b272aff752b5',
+      src: 'https://images.unsplash.com/photo-1504680177321-2e9a29bc0bd7',
       title: 'Premium Event', 
       category: 'Event',
       description: 'Luxury event coverage'
@@ -69,11 +69,6 @@ const galleryItems = {
 
 const GalleryPage = () => {
   const [hoveredItem, setHoveredItem] = useState<{section: string, index: number} | null>(null);
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
-
-  const handleImageLoad = (src: string) => {
-    setLoadedImages(prev => new Set(prev).add(src));
-  };
 
   return (
     <main className="min-h-screen bg-cream">
@@ -89,7 +84,7 @@ const GalleryPage = () => {
                 {section === 'premium' ? 'Premium Photo—Visualizer—Bundle' : section.charAt(0).toUpperCase() + section.slice(1)}
               </h2>
               
-              <div className="flex flex-nowrap gap-8 overflow-x-auto pb-4 snap-x snap-mandatory">
+              <div className="flex flex-nowrap gap-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
                 {items.map((item, index) => (
                   <div
                     key={index}
@@ -104,12 +99,12 @@ const GalleryPage = () => {
                     }}
                   >
                     <Image
-                      src={`${item.src}?auto=format&fit=crop&w=1200&h=800&q=80`}
+                      src={item.src}
                       alt={item.title}
                       fill
                       className="object-cover transition-all duration-700 group-hover:scale-110"
                       sizes="(max-width: 640px) 100vw, 600px"
-                      onLoad={() => handleImageLoad(item.src)}
+                      unoptimized
                     />
                     
                     <div 
