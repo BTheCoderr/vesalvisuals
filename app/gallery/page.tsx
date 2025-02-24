@@ -4,26 +4,93 @@ import Header from '../components/Header';
 import Image from 'next/image';
 import { useState } from 'react';
 
+// Helper function to generate placeholder image URLs
+const getPlaceholderImage = (category: string, index: number) => {
+  const width = 800;
+  const height = 1200;
+  const keywords = {
+    Portrait: 'professional+portrait',
+    Studio: 'studio+photography',
+    Event: 'event+photography',
+    Music: 'music+video+production',
+    Film: 'film+production',
+    Production: 'video+production',
+    Bundle: 'photography+studio',
+  };
+  
+  return `https://source.unsplash.com/${width}x${height}/?${keywords[category as keyof typeof keywords] || 'photography'}`;
+};
+
 const galleryItems = {
   photoshoots: [
-    { src: '/images/(1) vertical 1.jpg', title: 'Portrait Session', category: 'Portrait' },
-    { src: '/images/(3) vertical 1.jpg', title: 'Studio Photography', category: 'Studio' },
-    { src: '/images/(3) vertical 2.jpg', title: 'Event Coverage', category: 'Event' },
+    { 
+      src: '/images/(1) vertical 1.jpg', 
+      placeholder: getPlaceholderImage('Portrait', 1),
+      title: 'Portrait Session', 
+      category: 'Portrait' 
+    },
+    { 
+      src: '/images/(3) vertical 1.jpg', 
+      placeholder: getPlaceholderImage('Studio', 1),
+      title: 'Studio Photography', 
+      category: 'Studio' 
+    },
+    { 
+      src: '/images/(3) vertical 2.jpg', 
+      placeholder: getPlaceholderImage('Event', 1),
+      title: 'Event Coverage', 
+      category: 'Event' 
+    },
   ],
   visualizers: [
-    { src: '/images/(2) vertical 1.jpeg', title: 'Music Video', category: 'Music' },
-    { src: '/images/(3) horizontal.jpg', title: 'Short Film', category: 'Film' },
-    { src: '/images/visualizer-1.jpg', title: 'Video Production', category: 'Production' },
+    { 
+      src: '/images/(2) vertical 1.jpeg', 
+      placeholder: getPlaceholderImage('Music', 1),
+      title: 'Music Video', 
+      category: 'Music' 
+    },
+    { 
+      src: '/images/(3) horizontal.jpg', 
+      placeholder: getPlaceholderImage('Film', 1),
+      title: 'Short Film', 
+      category: 'Film' 
+    },
+    { 
+      src: '/images/visualizer-1.jpg', 
+      placeholder: getPlaceholderImage('Production', 1),
+      title: 'Video Production', 
+      category: 'Production' 
+    },
   ],
   premium: [
-    { src: '/images/(3) horizontal.jpg', title: 'Premium Package', category: 'Bundle' },
-    { src: '/images/(3) vertical 1.jpg', title: 'Premium Studio', category: 'Studio' },
-    { src: '/images/(3) vertical 2.jpg', title: 'Premium Event', category: 'Event' },
+    { 
+      src: '/images/(3) horizontal.jpg', 
+      placeholder: getPlaceholderImage('Bundle', 1),
+      title: 'Premium Package', 
+      category: 'Bundle' 
+    },
+    { 
+      src: '/images/(3) vertical 1.jpg', 
+      placeholder: getPlaceholderImage('Studio', 2),
+      title: 'Premium Studio', 
+      category: 'Studio' 
+    },
+    { 
+      src: '/images/(3) vertical 2.jpg', 
+      placeholder: getPlaceholderImage('Event', 2),
+      title: 'Premium Event', 
+      category: 'Event' 
+    },
   ]
 };
 
 const GalleryPage = () => {
   const [hoveredItem, setHoveredItem] = useState<{section: string, index: number} | null>(null);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+
+  const handleImageLoad = (src: string) => {
+    setLoadedImages(prev => new Set(prev).add(src));
+  };
 
   return (
     <main className="min-h-screen bg-cream">
@@ -43,7 +110,7 @@ const GalleryPage = () => {
                 {items.map((item, index) => (
                   <div
                     key={index}
-                    className="group relative aspect-[3/4] overflow-hidden rounded-lg shadow-lg transition-all duration-500 hover:shadow-2xl"
+                    className="group relative aspect-[3/4] overflow-hidden rounded-lg shadow-lg transition-all duration-500 hover:shadow-2xl bg-gray-100"
                     onMouseEnter={() => setHoveredItem({ section, index })}
                     onMouseLeave={() => setHoveredItem(null)}
                     style={{
@@ -53,13 +120,29 @@ const GalleryPage = () => {
                       transition: 'transform 0.5s ease-out'
                     }}
                   >
+                    {/* Placeholder Image */}
+                    <Image
+                      src={item.placeholder}
+                      alt={`${item.title} placeholder`}
+                      fill
+                      className={`object-cover transition-opacity duration-300 ${
+                        loadedImages.has(item.src) ? 'opacity-0' : 'opacity-100'
+                      }`}
+                      priority
+                    />
+                    
+                    {/* Main Image */}
                     <Image
                       src={item.src}
                       alt={item.title}
                       fill
-                      className="object-cover transition-all duration-700 group-hover:scale-110"
+                      className={`object-cover transition-all duration-700 group-hover:scale-110 ${
+                        loadedImages.has(item.src) ? 'opacity-100' : 'opacity-0'
+                      }`}
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      onLoad={() => handleImageLoad(item.src)}
                     />
+                    
                     <div 
                       className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
                       style={{
