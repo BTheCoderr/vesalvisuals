@@ -3,7 +3,15 @@
 import Header from '../components/Header';
 import ContactFooter from '../components/ContactFooter';
 import Image from 'next/image';
-import { useState, useEffect, Suspense, useRef, useCallback } from 'react';
+import { useState, useEffect, Suspense, useRef } from 'react';
+
+interface GalleryItem {
+  src: string;
+  title: string;
+  category: string;
+  description: string;
+  aspect: string;
+}
 
 const galleryItems = {
   portraits: [
@@ -641,20 +649,11 @@ const galleryItems = {
   ]
 };
 
-const categories = [
-  { id: 'all', name: 'All Photos', count: Object.values(galleryItems).flat().length },
-  { id: 'portraits', name: 'Portraits', count: galleryItems.portraits.length },
-  { id: 'studio', name: 'Studio', count: galleryItems.studio.length },
-  { id: 'events', name: 'Events', count: galleryItems.events.length },
-  { id: 'lifestyle', name: 'Lifestyle', count: galleryItems.lifestyle.length },
-  { id: 'collections', name: 'Collections', count: galleryItems.collections.length }
-];
+
 
 const GalleryPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [visibleImages, setVisibleImages] = useState<Set<number>>(new Set());
-  const [isLoading, setIsLoading] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -684,29 +683,15 @@ const GalleryPage = () => {
 
   // Observe images when they're added to DOM
   useEffect(() => {
-    imageRefs.current.forEach((ref, index) => {
+    imageRefs.current.forEach((ref) => {
       if (ref && observerRef.current) {
         observerRef.current.observe(ref);
       }
     });
   }, [visibleImages]);
 
-  const getFilteredItems = () => {
-    if (selectedCategory === 'all') {
-      return Object.values(galleryItems).flat();
-    }
-    return galleryItems[selectedCategory] || [];
-  };
-
-  const getGridClass = (aspect: string) => {
-    switch (aspect) {
-      case 'portrait':
-        return 'aspect-[3/4]';
-      case 'landscape':
-        return 'aspect-[4/3]';
-      default:
-        return 'aspect-square';
-    }
+  const getFilteredItems = (): GalleryItem[] => {
+    return Object.values(galleryItems).flat();
   };
 
   // Optimized image loading with priority for first few images
@@ -723,7 +708,7 @@ const GalleryPage = () => {
             Our Portfolio
           </h1>
           <p className="text-xl text-cream/80 max-w-3xl mx-auto">
-            Capturing life's most precious moments with professional photography and videography services
+            Capturing life&apos;s most precious moments with professional photography and videography services
           </p>
         </div>
       </section>
@@ -732,7 +717,7 @@ const GalleryPage = () => {
       <section className="py-16">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
-            {getFilteredItems().map((item: any, index: number) => (
+            {getFilteredItems().map((item: GalleryItem, index: number) => (
               <div
                 key={index}
                 ref={(el) => {
