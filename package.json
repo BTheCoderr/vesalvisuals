@@ -7,18 +7,22 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "optimize-images": "node scripts/optimize-images.js",
     "generate-images": "ts-node scripts/generate-placeholders.ts"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@types/nodemailer": "^6.4.17",
     "canvas": "^3.1.0",
+    "cloudinary": "^2.7.0",
     "framer-motion": "^12.4.7",
     "next": "15.1.7",
+    "next-cloudinary": "^6.16.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-intersection-observer": "^9.15.1",
     "resend": "^4.1.2",
+    "sharp": "^0.34.3",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
