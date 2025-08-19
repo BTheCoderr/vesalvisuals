@@ -35,10 +35,9 @@ async function uploadImages() {
         public_id: path.parse(file).name,
         overwrite: true,
         resource_type: 'image',
-        transformation: [
-          { quality: 'auto:good' },
-          { fetch_format: 'auto' }
-        ]
+        // No transformations - preserve original image exactly as is
+        eager: [],
+        eager_async: false
       });
       
       uploadedImages.push({
