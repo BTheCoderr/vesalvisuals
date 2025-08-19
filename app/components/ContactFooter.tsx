@@ -1,18 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 const ContactFooter = () => {
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
+    service: '',
     message: '',
     newsletter: false
   });
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+
+  // Pre-fill service from URL parameter
+  useEffect(() => {
+    const service = searchParams.get('service');
+    if (service) {
+      setFormData(prev => ({ ...prev, service }));
+    }
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,6 +52,7 @@ const ContactFooter = () => {
         firstName: '',
         lastName: '',
         email: '',
+        service: '',
         message: '',
         newsletter: false
       });
@@ -107,6 +119,18 @@ const ContactFooter = () => {
                   required
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs text-cream/60 mb-1">Service Interested In</label>
+                <input
+                  type="text"
+                  className="w-full bg-navy-dark border border-cream/20 rounded px-3 py-2 text-cream"
+                  required
+                  value={formData.service}
+                  onChange={(e) => setFormData(prev => ({ ...prev, service: e.target.value }))}
+                  placeholder="e.g., Photoshoots, Visualizers, Premium Bundle"
                 />
               </div>
 

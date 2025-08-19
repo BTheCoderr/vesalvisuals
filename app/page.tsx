@@ -2,6 +2,7 @@ import Header from './components/Header';
 import ServiceCard from './components/ServiceCard';
 import ContactFooter from './components/ContactFooter';
 import Image from 'next/image';
+import { Suspense } from 'react';
 
 const services = [
   {
@@ -87,7 +88,9 @@ export default function Home() {
         </div>
       </div>
 
-      <ContactFooter />
+      <Suspense fallback={<div className="bg-navy py-16"><div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center text-cream">Loading contact form...</div></div>}>
+        <ContactFooter />
+      </Suspense>
     </main>
   );
 }

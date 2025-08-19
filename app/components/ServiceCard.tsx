@@ -76,7 +76,7 @@ const ServiceCard = ({ title, price, images, serviceIncludes }: ServiceCardProps
           {serviceIncludes.join(', ')}
         </div>
         <Link
-          href={`/gallery#${gallerySection}`}
+          href={`/contact?service=${encodeURIComponent(title)}`}
           className="inline-block w-full text-center bg-navy text-cream py-2 px-4 rounded mt-4 hover:bg-navy-light transition-colors"
         >
           Book now
