@@ -740,9 +740,9 @@ const GalleryPage = () => {
                   imageRefs.current[index] = el;
                 }}
                 data-index={index}
-                className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer bg-gray-100 ${
-                  item.aspect === 'portrait' ? 'aspect-[3/4]' : 
-                  item.aspect === 'landscape' ? 'aspect-[4/3]' : 
+                className={`group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer ${
+                  item.aspect === 'portrait' ? 'aspect-[2/3]' : 
+                  item.aspect === 'landscape' ? 'aspect-[3/2]' : 
                   'aspect-square'
                 }`}
                 onClick={() => setSelectedImage(item)}
@@ -752,33 +752,31 @@ const GalleryPage = () => {
                 
                 {/* Actual image with lazy loading */}
                 {visibleImages.has(index) && (
-                  <div className="absolute inset-2">
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      fill
-                      priority={shouldPrioritize(index)}
-                      loading={shouldPrioritize(index) ? 'eager' : 'lazy'}
-                      className="object-contain group-hover:scale-110 transition-transform duration-500"
-                      sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
-                      placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5p_tQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                      style={{
-                        objectPosition: 'center center' // Ensure focal point is centered
-                      }}
-                      onLoad={() => {
-                        // Remove placeholder when image loads
-                        const element = imageRefs.current[index];
-                        if (element) {
-                          const placeholder = element.querySelector('.bg-gray-200');
-                          if (placeholder) {
-                            placeholder.classList.add('opacity-0');
-                            setTimeout(() => placeholder.remove(), 300);
-                          }
+                  <Image
+                    src={item.src}
+                    alt={item.title}
+                    fill
+                    priority={shouldPrioritize(index)}
+                    loading={shouldPrioritize(index) ? 'eager' : 'lazy'}
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, (max-width: 1280px) 20vw, 16vw"
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5p_tQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXW358"
+                    style={{
+                      objectPosition: 'center center' // Ensure focal point is centered
+                    }}
+                    onLoad={() => {
+                      // Remove placeholder when image loads
+                      const element = imageRefs.current[index];
+                      if (element) {
+                        const placeholder = element.querySelector('.bg-gray-200');
+                        if (placeholder) {
+                          placeholder.classList.add('opacity-0');
+                          setTimeout(() => placeholder.remove(), 300);
                         }
-                      }}
-                    />
-                  </div>
+                      }
+                    }}
+                  />
                 )}
               </div>
             ))}
@@ -792,7 +790,7 @@ const GalleryPage = () => {
           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-4xl max-h-[90vh] w-full">
+          <div className="relative w-full h-full flex items-center justify-center overflow-auto">
             <button
               onClick={() => setSelectedImage(null)}
               className="absolute top-4 right-4 bg-white/20 text-white p-2 rounded-full hover:bg-white/30 transition-colors z-10"
@@ -801,17 +799,18 @@ const GalleryPage = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <Image
-              src={selectedImage.src}
-              alt={selectedImage.title}
-              width={800}
-              height={600}
-              className="w-full h-auto rounded-lg object-contain"
-              priority
-              style={{
-                objectPosition: 'center center'
-              }}
-            />
+            <div className="relative w-full h-full min-h-full">
+              <Image
+                src={selectedImage.src}
+                alt={selectedImage.title}
+                fill
+                className="object-contain"
+                priority
+                style={{
+                  objectPosition: 'center center'
+                }}
+              />
+            </div>
           </div>
         </div>
       )}
