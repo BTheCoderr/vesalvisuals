@@ -3,7 +3,7 @@
 import Header from '../components/Header';
 import ContactFooter from '../components/ContactFooter';
 import Image from 'next/image';
-import { useState, useEffect, Suspense, useRef } from 'react';
+import { useState, useEffect, Suspense, useRef, useCallback } from 'react';
 import { getImageUrl, imageStats } from '../../lib/cloudinary-images';
 
 interface GalleryItem {
@@ -658,6 +658,13 @@ const GalleryPage = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Enhanced lazy loading with better performance
+  const loadImage = useCallback((index: number) => {
+    if (!visibleImages.has(index)) {
+      setVisibleImages(prev => new Set([...prev, index]));
+    }
+  }, [visibleImages]);
+
   // Initialize intersection observer for lazy loading
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -694,37 +701,6 @@ const GalleryPage = () => {
   const getFilteredItems = (): GalleryItem[] => {
     return Object.values(galleryItems).flat();
   };
-
-  // Enhanced lazy loading with better performance
-  const loadImage = (index: number) => {
-    if (!visibleImages.has(index)) {
-      setVisibleImages(prev => new Set([...prev, index]));
-    }
-  };
-
-  // Initialize intersection observer for lazy loading
-  useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(entry.target.getAttribute('data-index') || '0');
-            loadImage(index);
-          }
-        });
-      },
-      {
-        rootMargin: '200px', // Increased margin for smoother loading
-        threshold: 0.01 // Lower threshold for earlier detection
-      }
-    );
-
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, [loadImage]);
 
   // Optimized image loading with priority for first few images
   const shouldPrioritize = (index: number) => index < 12; // First 12 images load immediately
