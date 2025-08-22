@@ -16,7 +16,7 @@ const services = [
   },
   {
     title: 'Visualizers',
-    price: 320,
+    price: 450,
     description: '',
     images: [
       '/images/(2) vertical 1.jpeg'
@@ -25,7 +25,7 @@ const services = [
   },
   {
     title: 'Premium Photo—Visualizer—Bundle',
-    price: 720,
+    price: 1000,
     description: '',
     images: [
       '/images/(3) horizontal.jpg',
