@@ -5,12 +5,11 @@ import Image from 'next/image';
 
 interface ServiceCardProps {
   title: string;
-  price: number;
   images: string[];
   serviceIncludes: string[];
 }
 
-const ServiceCard = ({ title, price, images, serviceIncludes }: ServiceCardProps) => {
+const ServiceCard = ({ title, images, serviceIncludes }: ServiceCardProps) => {
   const isPremium = title.includes('Premium');
   
   // Determine gallery section based on title
@@ -69,7 +68,7 @@ const ServiceCard = ({ title, price, images, serviceIncludes }: ServiceCardProps
         <Link href={`/gallery#${gallerySection}`} className="inline-block">
           <h3 className="text-2xl font-serif hover:text-navy-light transition-colors">{title}</h3>
         </Link>
-        <p className="text-sm">Starting at ${price}</p>
+        <p className="text-sm text-navy/70">Contact for custom pricing</p>
         <div className="text-sm max-w-prose mx-auto">
           <span className="font-medium">Services include:</span>
           <br />
@@ -79,7 +78,7 @@ const ServiceCard = ({ title, price, images, serviceIncludes }: ServiceCardProps
           href={`/contact?service=${encodeURIComponent(title)}`}
           className="inline-block w-full text-center bg-navy text-cream py-2 px-4 rounded mt-4 hover:bg-navy-light transition-colors"
         >
-          Book now
+          Inquire now
         </Link>
       </div>
     </div>

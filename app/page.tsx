@@ -7,7 +7,6 @@ import { Suspense } from 'react';
 const services = [
   {
     title: 'Photoshoots',
-    price: 230,
     description: '',
     images: [
       '/images/(1) vertical 1.jpg'
@@ -16,7 +15,6 @@ const services = [
   },
   {
     title: 'Visualizers',
-    price: 450,
     description: '',
     images: [
       '/images/(2) vertical 1.jpeg'
@@ -25,7 +23,6 @@ const services = [
   },
   {
     title: 'Premium Photo—Visualizer—Bundle',
-    price: 1000,
     description: '',
     images: [
       '/images/(3) horizontal.jpg',
